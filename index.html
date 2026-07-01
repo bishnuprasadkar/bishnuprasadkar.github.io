@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bishnu Prasad Kar — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0F1C;
+      --surface:   #111827;
+      --surface2:  #1E293B;
+      --border:    #1F2D45;
+      --accent:    #3B82F6;
+      --accent2:   #06B6D4;
+      --gold:      #F59E0B;
+      --text:      #F1F5F9;
+      --muted:     #64748B;
+      --subtle:    #94A3B8;
+      --green:     #10B981;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--subtle);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #2563EB !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding: 7rem clamp(1.5rem, 6vw, 5rem) 4rem;
+    }
+    .hero-left {}
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 2rem; height: 1px;
+      background: var(--accent2);
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      color: var(--subtle);
+      margin-bottom: 1.5rem;
+    }
+    .hero-role strong { color: var(--accent); font-weight: 600; }
+    .hero-desc {
+      color: var(--subtle);
+      font-size: 0.975rem;
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #2563EB; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent;
+      color: var(--subtle);
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--text); transform: translateY(-1px); }
+
+    /* ── API CARD (hero right) ── */
+    .api-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.08);
+      position: relative;
+    }
+    .api-card-titlebar {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red   { background: #FF5F57; }
+    .dot-yellow{ background: #FFBD2E; }
+    .dot-green { background: #28C840; }
+    .api-card-tab {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .api-body { padding: 1.25rem 1.5rem; line-height: 1.9; }
+    .api-line { display: flex; gap: 0.75rem; }
+    .ln { color: #2D3F57; min-width: 1.25rem; text-align: right; user-select: none; }
+    .kw  { color: #C084FC; }
+    .str { color: #86EFAC; }
+    .num { color: #FB923C; }
+    .key { color: #93C5FD; }
+    .pun { color: var(--muted); }
+    .cm  { color: #2D3F57; font-style: italic; }
+    .method { color: var(--accent2); font-weight: 500; }
+    .url-path { color: var(--gold); }
+    .status { color: var(--green); }
+    .blink {
+      display: inline-block;
+      width: 2px; height: 0.9em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .floating-badge {
+      position: absolute;
+      bottom: -12px; right: 24px;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(16,185,129,0.4);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .floating-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* ── RESUME SECTION ── */
+    .resume-section {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .resume-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(59,130,246,0.07) 0%, rgba(6,182,212,0.04) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .resume-card-left { display: flex; align-items: center; gap: 1.5rem; }
+    .resume-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.1));
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .resume-info-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .resume-info-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .resume-info-meta span {
+      color: var(--green);
+      margin-right: 0.5rem;
+    }
+    .resume-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(59,130,246,0.35);
+      white-space: nowrap;
+    }
+    .resume-download-btn:hover {
+      background: #2563EB;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59,130,246,0.45);
+    }
+    .resume-download-btn svg {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+    }
+    .resume-preview-chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .resume-chip {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      padding: 5rem clamp(1.5rem, 6vw, 5rem);
+    }
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      color: var(--subtle);
+      font-size: 0.95rem;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+      margin-bottom: 3rem;
+      max-width: 80px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-category {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: var(--surface2);
+      color: var(--subtle);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .pill:hover { border-color: var(--accent); color: var(--text); }
+    .pill.hot { border-color: rgba(245,158,11,0.4); color: var(--gold); }
+    .pill.hot::before { content: '★'; font-size: 0.6rem; }
+
+    /* ── CURRENTLY BUILDING ── */
+    .current-bar {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.06));
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .current-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .current-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .cpill {
+      background: rgba(59,130,246,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(59,130,246,0.25);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 5px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 2px 2fr;
+      gap: 0 2rem;
+      position: relative;
+    }
+    .exp-date-col {
+      text-align: right;
+      padding: 0 0 2.5rem 0;
+    }
+    .exp-dates {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      padding-top: 0.15rem;
+    }
+    .exp-duration {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .exp-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .exp-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .exp-line-col::after {
+      content: '';
+      flex: 1;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%);
+      margin-top: 6px;
+    }
+    .exp-item:last-child .exp-line-col::after { display: none; }
+    .exp-content { padding-bottom: 2.5rem; }
+    .exp-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .exp-company a { color: inherit; text-decoration: none; }
+    .exp-company a:hover { text-decoration: underline; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .exp-bullets li {
+      color: var(--subtle);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+    .exp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-top: 0.75rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(59,130,246,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .project-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .project-status {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--green);
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.2);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .project-org {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+    .project-desc {
+      color: var(--subtle);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+    .project-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .project-bullets li {
+      color: var(--subtle);
+      font-size: 0.82rem;
+      line-height: 1.55;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+    .project-bullets li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--accent2);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      display: flex; align-items: center; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .edu-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05));
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .edu-info { flex: 1; min-width: 200px; }
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .edu-school {
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+    .edu-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+    .edu-cgpa {
+      text-align: center;
+    }
+    .edu-cgpa .big-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .edu-cgpa .label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .contact-tagline span { color: var(--accent); }
+    .contact-text {
+      color: var(--subtle);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--subtle);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--text); transform: translateX(4px); }
+    .contact-link-icon {
+      width: 32px; height: 32px;
+      background: var(--surface2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .contact-link-label { flex: 1; }
+    .contact-link-value { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+    }
+    footer span { color: var(--accent); }
+
+    /* ── SCROLL FADE ── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .api-card { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 0 2px 1fr; }
+      .exp-date-col { display: none; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .edu-card { flex-direction: column; }
+    }
+
+    /* reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">BPK<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="resume.pdf" download="Bishnu_Prasad_Kar_Resume.pdf">Resume ↓</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left fade-in">
+    <div class="hero-eyebrow">Full-Stack Software Engineer</div>
+    <h1 class="hero-name">Bishnu<br>Prasad Kar</h1>
+    <p class="hero-role">Building <strong>fintech infrastructure</strong> at scale</p>
+    <p class="hero-desc">
+      I design and ship production-grade systems — from Spring Boot microservices and authentication flows to Angular portals and BaaS platforms that banks actually use. Currently at Interland Technology Services, working on Finexus.
+    </p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="#projects">View my work ↓</a>
+      <a class="btn-secondary" href="resume.pdf" download="Bishnu_Prasad_Kar_Resume.pdf">⬇ Download Resume</a>
+      <a class="btn-secondary" href="mailto:bishnuprasadkar1111@gmail.com">Say hello →</a>
+    </div>
+  </div>
+
+  <div class="api-card fade-in" style="transition-delay:0.15s">
+    <div class="api-card-titlebar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <div class="api-card-tab">engineer.json</div>
+    </div>
+    <div class="api-body">
+      <div class="api-line"><span class="ln">1</span><span class="cm">// GET /api/v1/engineer/bishnu</span></div>
+      <div class="api-line"><span class="ln">2</span><span class="pun">{</span></div>
+      <div class="api-line"><span class="ln">3</span>&nbsp;&nbsp;<span class="key">"name"</span><span class="pun">:</span> <span class="str">"Bishnu Prasad Kar"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">4</span>&nbsp;&nbsp;<span class="key">"role"</span><span class="pun">:</span> <span class="str">"Software Engineer L1"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="key">"company"</span><span class="pun">:</span> <span class="str">"Interland Technology"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">6</span>&nbsp;&nbsp;<span class="key">"stack"</span><span class="pun">: [</span></div>
+      <div class="api-line"><span class="ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Spring Boot"</span><span class="pun">,</span> <span class="str">"Angular"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"PostgreSQL"</span><span class="pun">,</span> <span class="str">"Kafka"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">9</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"TypeScript"</span><span class="pun">,</span> <span class="str">"Tailwind CSS"</span></div>
+      <div class="api-line"><span class="ln">10</span>&nbsp;&nbsp;<span class="pun">],</span></div>
+      <div class="api-line"><span class="ln">11</span>&nbsp;&nbsp;<span class="key">"cgpa"</span><span class="pun">:</span> <span class="num">9.54</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">12</span>&nbsp;&nbsp;<span class="key">"status"</span><span class="pun">:</span> <span class="status">"open_to_opportunities"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">13</span>&nbsp;&nbsp;<span class="key">"location"</span><span class="pun">:</span> <span class="str">"India"</span></div>
+      <div class="api-line"><span class="ln">14</span><span class="pun">}</span></div>
+      <div class="api-line"><span class="ln">15</span><span class="blink"></span></div>
+    </div>
+    <div class="floating-badge">open to work</div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Tech Stack</div>
+  <h2 class="section-title">What I build with</h2>
+  <p class="section-sub">A production-hardened toolkit across the full stack — from API design to pixel-perfect UIs.</p>
+  <div class="divider"></div>
+
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-category">Backend</div>
+      <div class="skill-pills">
+        <span class="pill hot">Java</span>
+        <span class="pill hot">Spring Boot</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Microservices</span>
+        <span class="pill">JUnit</span>
+        <span class="pill">Spring Security</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Frontend</div>
+      <div class="skill-pills">
+        <span class="pill hot">Angular</span>
+        <span class="pill hot">TypeScript</span>
+        <span class="pill">Tailwind CSS</span>
+        <span class="pill">PrimeNG</span>
+        <span class="pill">HTML/CSS</span>
+        <span class="pill">RxJS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Database</div>
+      <div class="skill-pills">
+        <span class="pill hot">PostgreSQL</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">JPQL</span>
+        <span class="pill">Spring Data JPA</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">DevOps & Tools</div>
+      <div class="skill-pills">
+        <span class="pill">Git</span>
+        <span class="pill">GitLab</span>
+        <span class="pill">Postman</span>
+        <span class="pill">SOAP API</span>
+        <span class="pill">GitHub</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="current-bar fade-in">
+    <span class="current-label">🔨 currently building with</span>
+    <div class="current-pills">
+      <span class="cpill">Apache Kafka</span>
+      <span class="cpill">OAuth 2.0 / JWT</span>
+      <span class="cpill">Angular Signals</span>
+      <span class="cpill">Spring Boot 3</span>
+      <span class="cpill">BaaS Architecture</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Career</div>
+  <h2 class="section-title">Work Experience</h2>
+  <p class="section-sub">Building fintech infrastructure since 2024, from associate to software engineer in under a year.</p>
+  <div class="divider"></div>
+
+  <div class="exp-timeline fade-in">
+    <div class="exp-item">
+      <div class="exp-date-col">
+        <div class="exp-dates">Jul 2025 → Present</div>
+        <div class="exp-duration">Current</div>
+      </div>
+      <div class="exp-line-col"><div class="exp-dot"></div></div>
+      <div class="exp-content">
+        <div class="exp-title">Software Engineer — Level 1</div>
+        <div class="exp-company">Interland Technology Services Pvt. Ltd. &nbsp;·&nbsp; <a href="https://finexus.io" target="_blank">finexus.io ↗</a></div>
+        <ul class="exp-bullets">
+          <li>Developed and maintained Spring Boot REST APIs supporting multiple BaaS modules and business workflows, improving backend scalability and integration consistency.</li>
+          <li>Built responsive and reusable Angular components with TypeScript and Tailwind CSS, reducing UI development effort across portals with a consistent design system.</li>
+          <li>Designed and developed the Finexus public website, enabling seamless onboarding of fintech partners and improving product visibility for BaaS services.</li>
+          <li>Wrote unit tests (JUnit) for service and controller methods, reducing regression issues and improving code reliability during deployments.</li>
+          <li>Implemented complex authentication flows with keyboard navigation, Kafka-based event streaming, and approval flow management across admin and self-service portals.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date-col">
+        <div class="exp-dates">Jul 2024 → Jun 2025</div>
+        <div class="exp-duration">1 year</div>
+      </div>
+      <div class="exp-line-col"><div class="exp-dot" style="background:var(--accent2); box-shadow: 0 0 0 2px var(--accent2)"></div></div>
+      <div class="exp-content">
+        <div class="exp-title">Associate Software Developer</div>
+        <div class="exp-company">Interland Technology Services Pvt. Ltd.</div>
+        <ul class="exp-bullets">
+          <li>Contributed to the foundational build of core BaaS modules — Admin, Self-Service, Documentation & Developer portals — during the initial product phase.</li>
+          <li>Implemented UI screens and reusable frontend components in Angular, improving design uniformity and development speed across modules.</li>
+          <li>Supported backend workflows using Spring Boot, contributing to API development and smooth frontend–backend data integration.</li>
+          <li>Led development of the Ticket Management module: full-stack implementation with JPQL filtering, Spring Boot Specifications, PrimeNG paginator, and sessionStorage persistence.</li>
+        </ul>
+        <div class="exp-badge">🏆 Top Performer — Post-Training Evaluation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Projects</div>
+  <h2 class="section-title">What I've shipped</h2>
+  <p class="section-sub">Production systems used by real banks and fintech partners.</p>
+  <div class="divider"></div>
+
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-card-header">
+        <div class="project-icon">🏦</div>
+        <div class="project-status">Production</div>
+      </div>
+      <div>
+        <div class="project-name">Banking as a Service Platform</div>
+        <div class="project-org">Finexus · finexus.io</div>
+      </div>
+      <p class="project-desc">
+        A modular BaaS ecosystem enabling banks to expose regulated financial services via APIs for embedded finance and third-party integrations.
+      </p>
+      <ul class="project-bullets">
+        <li>Multi-portal architecture: Admin, Developer, Self-Service, Self-Onboarding, Documentation</li>
+        <li>Core banking APIs — onboarding, payments, lending, consent management, analytics</li>
+        <li>API monetization, policy enforcement, RBAC, and audit logging</li>
+        <li>Sandbox and production environments for seamless API discovery and testing</li>
+        <li>Third-party provider (TPP) onboarding with contract management and lifecycle tracking</li>
+      </ul>
+      <div class="project-tags">
+        <span class="tag">Java</span>
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Angular</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">Tailwind</span>
+        <span class="tag">REST API</span>
+        <span class="tag">JUnit</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-header">
+        <div class="project-icon">🌐</div>
+        <div class="project-status">Live</div>
+      </div>
+      <div>
+        <div class="project-name">Finexus Public Website</div>
+        <div class="project-org">Interland Technology Services</div>
+      </div>
+      <p class="project-desc">
+        Designed and developed the public-facing website for the Finexus BaaS platform — the primary point of entry for banks and fintech partners.
+      </p>
+      <ul class="project-bullets">
+        <li>Responsive, performance-optimized site for fintech partner onboarding</li>
+        <li>Showcases BaaS product capabilities and API offerings</li>
+        <li>Built with Angular and Tailwind CSS for design consistency</li>
+      </ul>
+      <div class="project-tags">
+        <span class="tag">Angular</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Responsive Design</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-header">
+        <div class="project-icon">🔐</div>
+        <div class="project-status">Production</div>
+      </div>
+      <div>
+        <div class="project-name">Authentication Flow System</div>
+        <div class="project-org">BaaS Platform — Admin Portal</div>
+      </div>
+      <p class="project-desc">
+        Full authentication UX with keyboard navigation, browser autofill support, OTP flows, and organization-switching — built to production quality.
+      </p>
+      <ul class="project-bullets">
+        <li>Enter-key login with browser autofill via DOM value fallback strategy</li>
+        <li>OTP auto-focus and 6-digit input flow with edge-case handling</li>
+        <li>Organization dropdown with arrow-key navigation and accessibility</li>
+        <li>Spring Security integration on the backend</li>
+      </ul>
+      <div class="project-tags">
+        <span class="tag">Angular</span>
+        <span class="tag">Spring Security</span>
+        <span class="tag">OAuth 2.0</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Accessibility</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-card-header">
+        <div class="project-icon">🎫</div>
+        <div class="project-status">Production</div>
+      </div>
+      <div>
+        <div class="project-name">Ticket Management Module</div>
+        <div class="project-org">BaaS Platform — Self-Service Portal</div>
+      </div>
+      <p class="project-desc">
+        End-to-end ticket management with advanced filtering, pagination, attachments, and approval workflows — built full-stack from DB to UI.
+      </p>
+      <ul class="project-bullets">
+        <li>JPQL queries with Spring Boot Specifications and PostgreSQL null casting</li>
+        <li>PrimeNG paginator with sessionStorage-based filter persistence across navigation</li>
+        <li>Attachment system with PATCH endpoint, skeleton loaders, and file count badge</li>
+        <li>Approval flow editor with pinned pages and navigation state management</li>
+      </ul>
+      <div class="project-tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Angular</span>
+        <span class="tag">PrimeNG</span>
+        <span class="tag">JPA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">Education</div>
+  <h2 class="section-title">Academic background</h2>
+  <div class="divider"></div>
+
+  <div class="edu-card fade-in">
+    <div class="edu-icon">🎓</div>
+    <div class="edu-info">
+      <div class="edu-degree">B.Tech — Computer Science & Engineering (Data Science)</div>
+      <div class="edu-school">Gita Autonomous College, Bhubaneswar, Odisha</div>
+      <div class="edu-meta">Graduated 2024 &nbsp;·&nbsp; Affiliated to BPUT</div>
+    </div>
+    <div class="edu-cgpa">
+      <div class="big-num">9.54</div>
+      <div class="label">CGPA / 10</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="resume-section">
+  <div class="section-eyebrow">Resume</div>
+  <h2 class="section-title">Download my CV</h2>
+  <p class="section-sub">Full details on my experience, projects, and skills — in a single PDF.</p>
+  <div class="divider"></div>
+
+  <div class="resume-card fade-in">
+    <div class="resume-card-left">
+      <div class="resume-icon">📄</div>
+      <div>
+        <div class="resume-info-title">Bishnu_Prasad_Kar_Resume.pdf</div>
+        <div class="resume-info-meta">
+          <span>●</span> Updated July 2025 &nbsp;·&nbsp; Full-Stack Software Engineer
+        </div>
+        <div class="resume-preview-chips">
+          <span class="resume-chip">Spring Boot</span>
+          <span class="resume-chip">Angular</span>
+          <span class="resume-chip">PostgreSQL</span>
+          <span class="resume-chip">Kafka</span>
+          <span class="resume-chip">BaaS Platform</span>
+          <span class="resume-chip">Finexus</span>
+        </div>
+      </div>
+    </div>
+    <a class="resume-download-btn" href="resume.pdf" download="Bishnu_Prasad_Kar_Resume.pdf">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+      </svg>
+      Download Resume
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid fade-in">
+    <div>
+      <div class="section-eyebrow">Contact</div>
+      <h2 class="contact-tagline">Let's build something <span>great</span> together.</h2>
+      <p class="contact-text">
+        I'm open to full-time roles, freelance projects, and interesting conversations around fintech, backend systems, and Angular architecture. Drop me a message.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:bishnuprasadkar1111@gmail.com">
+        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-label">
+          <div style="font-size:0.8rem;font-weight:500;color:var(--text)">Email</div>
+          <div class="contact-link-value">bishnuprasadkar1111@gmail.com</div>
+        </div>
+        <span style="color:var(--muted);font-size:0.8rem">→</span>
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/bishnu-prasad-kar-519400276" target="_blank">
+        <div class="contact-link-icon">💼</div>
+        <div class="contact-link-label">
+          <div style="font-size:0.8rem;font-weight:500;color:var(--text)">LinkedIn</div>
+          <div class="contact-link-value">bishnu-prasad-kar-519400276</div>
+        </div>
+        <span style="color:var(--muted);font-size:0.8rem">↗</span>
+      </a>
+      <a class="contact-link" href="tel:+919348690158">
+        <div class="contact-link-icon">📞</div>
+        <div class="contact-link-label">
+          <div style="font-size:0.8rem;font-weight:500;color:var(--text)">Phone</div>
+          <div class="contact-link-value">+91-9348690158</div>
+        </div>
+        <span style="color:var(--muted);font-size:0.8rem">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span>Bishnu Prasad Kar</span> · 2025 · bishnuprasadkar1111@gmail.com</p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
