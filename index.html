@@ -514,7 +514,7 @@
     #projects { background: var(--surface); }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.5rem;
     }
     .project-card {
@@ -598,6 +598,9 @@
       border: 1px solid var(--border);
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
+    }
+    .featured-project{
+        margin-bottom:2rem;
     }
 
     /* ── EDUCATION ── */
@@ -723,8 +726,41 @@
       .hero { grid-template-columns: 1fr; padding-top: 6rem; }
       .api-card { display: none; }
       .contact-grid { grid-template-columns: 1fr; }
-      .exp-item { grid-template-columns: 0 2px 1fr; }
-      .exp-date-col { display: none; }
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+      .resume-card{
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 1.5rem;
+      }
+
+      .resume-card-left{
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: 1rem;
+      }
+
+      .resume-info-title{
+          font-size:1rem;
+          word-break:break-word;
+      }
+
+      .resume-info-meta{
+          line-height:1.6;
+      }
+
+      .resume-preview-chips{
+          justify-content:center;
+      }
+
+      .resume-download-btn{
+          width:100%;
+          justify-content:center;
+      }
+      
     }
     @media (max-width: 600px) {
       .nav-links { display: none; }
@@ -738,13 +774,97 @@
       .fade-in { opacity: 1; transform: none; }
       * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+
+    /* ---------- EXPERIENCE ---------- */
+
+    .exp-item{
+      display:block;
+      position:relative;
+      padding-left:32px;
+      margin-bottom:3rem;
+    }
+
+    .exp-line-col{
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:2px;
+      display:flex;
+      align-items:flex-start;
+    }
+
+    .exp-line-col::after{
+      content:'';
+      position:absolute;
+      left:4px;
+      top:16px;
+      bottom:-24px;
+      width:2px;
+      background:linear-gradient(180deg,var(--accent),var(--border));
+    }
+
+    .exp-item:last-child .exp-line-col::after{
+      display:none;
+    }
+
+    .exp-dot{
+      margin:0;
+      position:absolute;
+      left:0;
+      top:6px;
+    }
+
+    .exp-date-col{
+      display:block;
+      text-align:left;
+      padding:0;
+      margin-bottom:12px;
+    }
+
+    .exp-dates{
+      color:var(--accent);
+      font-size:.82rem;
+      font-weight:600;
+    }
+
+    .exp-duration{
+      font-size:.75rem;
+      opacity:.75;
+    }
+
+    .exp-title{
+      font-size:1.15rem;
+      line-height:1.4;
+      margin-bottom:6px;
+    }
+
+    .exp-company{
+      line-height:1.6;
+      margin-bottom:1rem;
+    }
+
+    .exp-company a{
+      word-break:break-word;
+    }
+
+    .exp-bullets{
+      gap:.8rem;
+    }
+
+    .exp-bullets li{
+      font-size:.92rem;
+      line-height:1.75;
+      word-break:normal;
+      overflow-wrap:break-word;
+    }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">BPK<span>.</span></a>
+  <a class="nav-logo" href="#">BK<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -761,7 +881,7 @@
     <h1 class="hero-name">Bishnu<br>Prasad Kar</h1>
     <p class="hero-role">Building <strong>fintech infrastructure</strong> at scale</p>
     <p class="hero-desc">
-      I design and ship production-grade systems — from Spring Boot microservices and authentication flows to Angular portals and BaaS platforms that banks actually use. Currently at Interland Technology Services, working on Finexus.
+      I build scalable full-stack applications using Spring Boot, Angular, PostgreSQL, Kafka, and Tailwind CSS. Experienced in developing REST APIs, modern web applications, and fintech platforms with a strong focus on performance, maintainability, and user experience.
     </p>
     <div class="hero-buttons">
       <a class="btn-primary" href="#projects">View my work ↓</a>
@@ -778,23 +898,43 @@
       <div class="api-card-tab">engineer.json</div>
     </div>
     <div class="api-body">
-      <div class="api-line"><span class="ln">1</span><span class="cm">// GET /api/v1/engineer/bishnu</span></div>
+      <div class="api-line"><span class="ln">1</span><span class="cm">// GET /api/v1/profile</span></div>
       <div class="api-line"><span class="ln">2</span><span class="pun">{</span></div>
       <div class="api-line"><span class="ln">3</span>&nbsp;&nbsp;<span class="key">"name"</span><span class="pun">:</span> <span class="str">"Bishnu Prasad Kar"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">4</span>&nbsp;&nbsp;<span class="key">"role"</span><span class="pun">:</span> <span class="str">"Software Engineer L1"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="key">"company"</span><span class="pun">:</span> <span class="str">"Interland Technology"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">6</span>&nbsp;&nbsp;<span class="key">"stack"</span><span class="pun">: [</span></div>
-      <div class="api-line"><span class="ln">7</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Spring Boot"</span><span class="pun">,</span> <span class="str">"Angular"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"PostgreSQL"</span><span class="pun">,</span> <span class="str">"Kafka"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">9</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"TypeScript"</span><span class="pun">,</span> <span class="str">"Tailwind CSS"</span></div>
-      <div class="api-line"><span class="ln">10</span>&nbsp;&nbsp;<span class="pun">],</span></div>
-      <div class="api-line"><span class="ln">11</span>&nbsp;&nbsp;<span class="key">"cgpa"</span><span class="pun">:</span> <span class="num">9.54</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">12</span>&nbsp;&nbsp;<span class="key">"status"</span><span class="pun">:</span> <span class="status">"open_to_opportunities"</span><span class="pun">,</span></div>
-      <div class="api-line"><span class="ln">13</span>&nbsp;&nbsp;<span class="key">"location"</span><span class="pun">:</span> <span class="str">"India"</span></div>
-      <div class="api-line"><span class="ln">14</span><span class="pun">}</span></div>
-      <div class="api-line"><span class="ln">15</span><span class="blink"></span></div>
+      <div class="api-line"><span class="ln">4</span>&nbsp;&nbsp;<span class="key">"experience"</span><span class="pun">:</span> <span class="str">"2+ Years"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="key">"domain"</span><span class="pun">:</span> <span class="str">"Fintech"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">6</span>&nbsp;&nbsp;<span class="key">"title"</span><span class="pun">:</span> <span class="str">"Software Engineer"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">7</span>&nbsp;&nbsp;<span class="key">"company"</span><span class="pun">:</span> <span class="str">"Finexus"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">8</span>&nbsp;&nbsp;<span class="key">"stack"</span><span class="pun">: [</span></div>
+      <div class="api-line">
+          <span class="ln">9</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="str" style="display:inline-block;width:105px;">"Spring Boot"</span>
+          <span class="pun">,</span>
+          <span class="str">"Angular"</span>
+          <span class="pun">,</span>
+      </div>
+
+      <div class="api-line">
+          <span class="ln">10</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="str" style="display:inline-block;width:105px;">"PostgreSQL"</span>
+          <span class="pun">,</span>
+          <span class="str">"Kafka"</span>
+          <span class="pun">,</span>
+      </div>
+
+      <div class="api-line">
+          <span class="ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="str" style="display:inline-block;width:105px;">"TypeScript"</span>
+          <span class="pun">,</span>
+          <span class="str">"Tailwind CSS"</span>
+      </div>
+      <div class="api-line"><span class="ln">12</span>&nbsp;&nbsp;<span class="pun">],</span></div>
+      <div class="api-line"><span class="ln">13</span>&nbsp;&nbsp;<span class="key">"status"</span><span class="pun">:</span> <span class="status">"OPEN_TO_WORK"</span><span class="pun">,</span></div>
+      <div class="api-line"><span class="ln">14</span>&nbsp;&nbsp;<span class="key">"location"</span><span class="pun">:</span> <span class="str">"India"</span></div>
+      <div class="api-line"><span class="ln">15</span><span class="pun">}</span></div>
+      <div class="api-line"><span class="ln">16</span><span class="blink"></span></div>
     </div>
-    <div class="floating-badge">open to work</div>
+    <div class="floating-badge">Available Now</div>
   </div>
 </section>
 
@@ -813,8 +953,13 @@
         <span class="pill hot">Spring Boot</span>
         <span class="pill">REST APIs</span>
         <span class="pill">Microservices</span>
-        <span class="pill">JUnit</span>
         <span class="pill">Spring Security</span>
+        <span class="pill">Spring Data JPA</span>
+        <span class="pill">Hibernate</span>
+        <span class="pill">Kafka</span>
+        <span class="pill">Redis</span>
+        <span class="pill">JUnit</span>
+        <span class="pill">Liquibase</span>
       </div>
     </div>
     <div class="skill-card">
@@ -824,8 +969,9 @@
         <span class="pill hot">TypeScript</span>
         <span class="pill">Tailwind CSS</span>
         <span class="pill">PrimeNG</span>
-        <span class="pill">HTML/CSS</span>
         <span class="pill">RxJS</span>
+        <span class="pill">HTML5</span>
+        <span class="pill">CSS3</span>
       </div>
     </div>
     <div class="skill-card">
@@ -834,17 +980,18 @@
         <span class="pill hot">PostgreSQL</span>
         <span class="pill">MySQL</span>
         <span class="pill">JPQL</span>
-        <span class="pill">Spring Data JPA</span>
+        <span class="pill">SQL</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-category">DevOps & Tools</div>
       <div class="skill-pills">
         <span class="pill">Git</span>
+        <span class="pill">GitHub</span>
         <span class="pill">GitLab</span>
         <span class="pill">Postman</span>
-        <span class="pill">SOAP API</span>
-        <span class="pill">GitHub</span>
+        <span class="pill">Maven</span>
+        <span class="pill">Docker</span>
       </div>
     </div>
   </div>
@@ -853,8 +1000,8 @@
     <span class="current-label">🔨 currently building with</span>
     <div class="current-pills">
       <span class="cpill">Apache Kafka</span>
+      <span class="cpill">Redis</span>
       <span class="cpill">OAuth 2.0 / JWT</span>
-      <span class="cpill">Angular Signals</span>
       <span class="cpill">Spring Boot 3</span>
       <span class="cpill">BaaS Architecture</span>
     </div>
@@ -865,7 +1012,7 @@
 <section id="experience">
   <div class="section-eyebrow">Career</div>
   <h2 class="section-title">Work Experience</h2>
-  <p class="section-sub">Building fintech infrastructure since 2024, from associate to software engineer in under a year.</p>
+  <p class="section-sub">A journey from Software Development Intern to Software Engineer, delivering modern fintech solutions since 2024.</p>
   <div class="divider"></div>
 
   <div class="exp-timeline fade-in">
@@ -877,9 +1024,9 @@
       <div class="exp-line-col"><div class="exp-dot"></div></div>
       <div class="exp-content">
         <div class="exp-title">Software Engineer — Level 1</div>
-        <div class="exp-company">Interland Technology Services Pvt. Ltd. &nbsp;·&nbsp; <a href="https://finexus.io" target="_blank">finexus.io ↗</a></div>
+        <div class="exp-company"><a href="https://finexus.io" target="_blank">FINEXUS ↗</a></div>
         <ul class="exp-bullets">
-          <li>Developed and maintained Spring Boot REST APIs supporting multiple BaaS modules and business workflows, improving backend scalability and integration consistency.</li>
+          <li>Developed and maintained Spring Boot REST APIs, implemented Kafka-based event-driven workflows, and contributed to secure, scalable fintech applications.</li>
           <li>Built responsive and reusable Angular components with TypeScript and Tailwind CSS, reducing UI development effort across portals with a consistent design system.</li>
           <li>Designed and developed the Finexus public website, enabling seamless onboarding of fintech partners and improving product visibility for BaaS services.</li>
           <li>Wrote unit tests (JUnit) for service and controller methods, reducing regression issues and improving code reliability during deployments.</li>
@@ -896,7 +1043,7 @@
       <div class="exp-line-col"><div class="exp-dot" style="background:var(--accent2); box-shadow: 0 0 0 2px var(--accent2)"></div></div>
       <div class="exp-content">
         <div class="exp-title">Associate Software Developer</div>
-        <div class="exp-company">Interland Technology Services Pvt. Ltd.</div>
+        <div class="exp-company"><a href="https://www.interlandtech.com/" target="_blank">Interland Technology Services Pvt. Ltd. ↗</a></div>
         <ul class="exp-bullets">
           <li>Contributed to the foundational build of core BaaS modules — Admin, Self-Service, Documentation & Developer portals — during the initial product phase.</li>
           <li>Implemented UI screens and reusable frontend components in Angular, improving design uniformity and development speed across modules.</li>
@@ -906,127 +1053,187 @@
         <div class="exp-badge">🏆 Top Performer — Post-Training Evaluation</div>
       </div>
     </div>
+    
+    <div class="exp-item">
+      <div class="exp-date-col">
+        <div class="exp-dates">Jan 2024 → Apr 2024</div>
+        <div class="exp-duration">3 months</div>
+      </div>
+      <div class="exp-line-col"><div class="exp-dot" style="background:var(--accent2); box-shadow: 0 0 0 2px var(--accent2)"></div></div>
+      <div class="exp-content">
+        <div class="exp-title">Software Development Intern</div>
+        <div class="exp-company">Interland Technology Services Pvt. Ltd.</div>
+        <ul class="exp-bullets">
+          <li>Developed frontend screens and reusable UI components using Angular, HTML, CSS, and TypeScript.</li>
+          <li>Assisted in developing and testing Spring Boot REST APIs while learning enterprise backend development practices.</li>
+          <li>Collaborated with senior developers to debug issues, integrate frontend with backend APIs, and understand production workflows.</li>
+          <li>Built a customer support chatbot application as part of the internship project to automate user queries and improve the overall support experience.</li>
+        </ul>
+        <div class="exp-badge">🚀 Converted to Full-Time Software Engineer</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-eyebrow">Projects</div>
-  <h2 class="section-title">What I've shipped</h2>
-  <p class="section-sub">Production systems used by real banks and fintech partners.</p>
+  <div class="section-eyebrow">Flagship Project</div>
+  <h2 class="section-title">Finexus Banking-as-a-Service Platform</h2>
+  <p class="section-sub">
+    Enterprise Banking-as-a-Service (BaaS) platform powering banks and fintech partners through secure APIs, multi-portal management, and production-ready financial workflows.
+  </p>
+
   <div class="divider"></div>
 
-  <div class="projects-grid fade-in">
-    <div class="project-card">
-      <div class="project-card-header">
-        <div class="project-icon">🏦</div>
-        <div class="project-status">Production</div>
+  <div class="project-card featured-project fade-in">
+
+    <div class="project-card-header">
+      <div class="project-icon">🏦</div>
+      <div class="project-status">LIVE</div>
+    </div>
+
+    <div>
+      <div class="project-name">
+        Banking as a Service (BaaS) Platform
       </div>
-      <div>
-        <div class="project-name">Banking as a Service Platform</div>
-        <div class="project-org">Finexus · finexus.io</div>
-      </div>
-      <p class="project-desc">
-        A modular BaaS ecosystem enabling banks to expose regulated financial services via APIs for embedded finance and third-party integrations.
-      </p>
-      <ul class="project-bullets">
-        <li>Multi-portal architecture: Admin, Developer, Self-Service, Self-Onboarding, Documentation</li>
-        <li>Core banking APIs — onboarding, payments, lending, consent management, analytics</li>
-        <li>API monetization, policy enforcement, RBAC, and audit logging</li>
-        <li>Sandbox and production environments for seamless API discovery and testing</li>
-        <li>Third-party provider (TPP) onboarding with contract management and lifecycle tracking</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Spring Boot</span>
-        <span class="tag">Angular</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Kafka</span>
-        <span class="tag">Tailwind</span>
-        <span class="tag">REST API</span>
-        <span class="tag">JUnit</span>
+
+      <div class="project-org">
+        Finexus · Enterprise Fintech Platform
       </div>
     </div>
 
+    <p class="project-desc">
+      Contributed to the development of the Finexus platform from its initial stages, building production-ready backend services and frontend applications powering banks, fintech partners, and third-party providers.
+    </p>
+
+    <ul class="project-bullets">
+
+      <li>
+        Designed and implemented <strong>100+ production REST APIs</strong> across multiple business domains using Spring Boot, PostgreSQL, Spring Data JPA, and Hibernate.
+      </li>
+
+      <li>
+        Developed full-stack features across the <strong>Admin Portal, Self-Service Portal, Developer Portal, and Documentation Portal</strong> using Angular, TypeScript, Tailwind CSS, and Spring Boot.
+      </li>
+
+      <li>
+        Independently built major platform modules including <strong>Company Onboarding, Ticket Management, Plans, Clients, APIs, Categories, User Management, Role Management, Policies, Charge Profiles, and Audit Logs.</strong>
+      </li>
+
+      <li>
+        Implemented enterprise workflows including advanced filtering, approval flows, reusable UI components, state persistence, and secure authentication.
+      </li>
+
+      <li>
+        Worked on both <strong>OAuth 2.0</strong> and <strong>cookie-based authentication</strong>, enhancing login, OTP verification, authorization, and security across multiple portals.
+      </li>
+
+      <li>
+        Developed Kafka-based event-driven workflows where client onboarding events triggered downstream notification and email services through asynchronous messaging.
+      </li>
+
+      <li>
+        Wrote repository methods, JPQL queries, database optimizations, JUnit test cases, production bug fixes, and feature enhancements across the platform lifecycle.
+      </li>
+
+    </ul>
+
+    <div class="project-tags">
+
+      <span class="tag">Java</span>
+      <span class="tag">Spring Boot</span>
+      <span class="tag">Angular</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Tailwind CSS</span>
+      <span class="tag">PostgreSQL</span>
+      <span class="tag">Spring Data JPA</span>
+      <span class="tag">Hibernate</span>
+      <span class="tag">Kafka</span>
+      <span class="tag">Spring Security</span>
+      <span class="tag">OAuth 2.0</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">JUnit</span>
+
+    </div>
+
+  </div>
+
+  <div class="projects-grid fade-in">
+
     <div class="project-card">
+
       <div class="project-card-header">
         <div class="project-icon">🌐</div>
         <div class="project-status">Live</div>
       </div>
+
       <div>
-        <div class="project-name">Finexus Public Website</div>
-        <div class="project-org">Interland Technology Services</div>
+        <div class="project-name">
+          Finexus Public Website
+        </div>
+
+        <div class="project-org">
+          Corporate Website
+        </div>
       </div>
+
       <p class="project-desc">
-        Designed and developed the public-facing website for the Finexus BaaS platform — the primary point of entry for banks and fintech partners.
+        Designed and developed the official Finexus website showcasing Banking-as-a-Service capabilities, API offerings, and partner onboarding information.
       </p>
+
       <ul class="project-bullets">
-        <li>Responsive, performance-optimized site for fintech partner onboarding</li>
-        <li>Showcases BaaS product capabilities and API offerings</li>
-        <li>Built with Angular and Tailwind CSS for design consistency</li>
+        <li>Built responsive UI using Angular and Tailwind CSS.</li>
+        <li>Optimized performance and responsiveness across desktop and mobile devices.</li>
+        <li>Created reusable UI components and modern landing pages.</li>
       </ul>
+
       <div class="project-tags">
         <span class="tag">Angular</span>
         <span class="tag">TypeScript</span>
         <span class="tag">Tailwind CSS</span>
         <span class="tag">Responsive Design</span>
       </div>
+
     </div>
 
     <div class="project-card">
+
       <div class="project-card-header">
-        <div class="project-icon">🔐</div>
-        <div class="project-status">Production</div>
+        <div class="project-icon">🤖</div>
+        <div class="project-status">Internship</div>
       </div>
+
       <div>
-        <div class="project-name">Authentication Flow System</div>
-        <div class="project-org">BaaS Platform — Admin Portal</div>
+        <div class="project-name">
+          Customer Support Chatbot
+        </div>
+
+        <div class="project-org">
+          Internship Project
+        </div>
       </div>
+
       <p class="project-desc">
-        Full authentication UX with keyboard navigation, browser autofill support, OTP flows, and organization-switching — built to production quality.
+        Built a customer support chatbot application as part of the internship project to automate user queries and improve the overall support experience.
       </p>
+
       <ul class="project-bullets">
-        <li>Enter-key login with browser autofill via DOM value fallback strategy</li>
-        <li>OTP auto-focus and 6-digit input flow with edge-case handling</li>
-        <li>Organization dropdown with arrow-key navigation and accessibility</li>
-        <li>Spring Security integration on the backend</li>
+        <li>Developed conversational workflows for customer assistance.</li>
+        <li>Integrated chatbot responses with backend services.</li>
+        <li>Improved support efficiency through automated query handling.</li>
       </ul>
+
       <div class="project-tags">
-        <span class="tag">Angular</span>
-        <span class="tag">Spring Security</span>
-        <span class="tag">OAuth 2.0</span>
-        <span class="tag">JWT</span>
-        <span class="tag">Accessibility</span>
+        <span class="tag">Full Stack</span>
+        <span class="tag">Chatbot</span>
+        <span class="tag">REST APIs</span>
       </div>
+
     </div>
 
-    <div class="project-card">
-      <div class="project-card-header">
-        <div class="project-icon">🎫</div>
-        <div class="project-status">Production</div>
-      </div>
-      <div>
-        <div class="project-name">Ticket Management Module</div>
-        <div class="project-org">BaaS Platform — Self-Service Portal</div>
-      </div>
-      <p class="project-desc">
-        End-to-end ticket management with advanced filtering, pagination, attachments, and approval workflows — built full-stack from DB to UI.
-      </p>
-      <ul class="project-bullets">
-        <li>JPQL queries with Spring Boot Specifications and PostgreSQL null casting</li>
-        <li>PrimeNG paginator with sessionStorage-based filter persistence across navigation</li>
-        <li>Attachment system with PATCH endpoint, skeleton loaders, and file count badge</li>
-        <li>Approval flow editor with pinned pages and navigation state management</li>
-      </ul>
-      <div class="project-tags">
-        <span class="tag">Spring Boot</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Angular</span>
-        <span class="tag">PrimeNG</span>
-        <span class="tag">JPA</span>
-      </div>
-    </div>
   </div>
+
 </section>
 
 <!-- EDUCATION -->
@@ -1038,9 +1245,10 @@
   <div class="edu-card fade-in">
     <div class="edu-icon">🎓</div>
     <div class="edu-info">
-      <div class="edu-degree">B.Tech — Computer Science & Engineering (Data Science)</div>
-      <div class="edu-school">Gita Autonomous College, Bhubaneswar, Odisha</div>
-      <div class="edu-meta">Graduated 2024 &nbsp;·&nbsp; Affiliated to BPUT</div>
+      <div class="edu-degree">Bachelor of Technology (B.Tech.) — Computer Science & Engineering</div>
+      <div class="edu-school">GITA Autonomous College, Bhubaneswar, Odisha</div>
+      <div class="edu-meta">Affiliated to Biju Patnaik University of Technology (BPUT)</div>
+      <div class="edu-meta">2020 – 2024</div>
     </div>
     <div class="edu-cgpa">
       <div class="big-num">9.54</div>
